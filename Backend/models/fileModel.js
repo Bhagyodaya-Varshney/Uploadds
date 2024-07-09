@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
-const File = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const FileSchema = new Schema({
   UserId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "UserModel",
+    ref: "UserModel", // Assuming UserModel is your User schema
     required: true,
   },
   path: {
@@ -14,14 +16,15 @@ const File = new mongoose.Schema({
     type: String,
     required: true,
   },
-  password: String,
+  password: String, // Optional field to store file password if required
   downloadCount: {
     type: Number,
-    required: true,
     default: 0,
   },
+}, {
+  timestamps: true // Add timestamps automatically: createdAt and updatedAt
 });
 
-const FileModel = mongoose.model("FileModel", File);
+const FileModel = mongoose.model("FileModel", FileSchema);
 
 export default FileModel;

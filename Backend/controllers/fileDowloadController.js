@@ -12,20 +12,28 @@ export const fileDownloadController = async (req, res) => {
     }
 
     if (file.password && !(await bcrypt.compare(DPassword, file.password))) {
-      return res.status(401).json({ message: "Password is Incorrect" });
+      return res.status(401).json({ message: "Password is incorrect" });
     }
 
     file.downloadCount++;
     await file.save();
-    console.log("1");
-    return res.download(file.path, file.originalName, (err) => {
+
+    req.on('aborted', () => {
+      console.log('Request aborted by the client');
+    });
+
+    res.download(file.path, file.originalName, (err) => {
       if (err) {
-        console.log(err);
-        return res.status(500).json({ message: "Internal Error Occur😞" });
+        console.error(err);
+        if (!res.headersSent) {
+          return res.status(500).json({ message: "Internal error occurred 😞" });
+        }
       }
     });
   } catch (e) {
-    console.log(e);
-    return res.status(500).json({ message: "Internal Error Occur😞" });
+    console.error(e);
+    if (!res.headersSent) {
+      return res.status(500).json({ message: "Internal error occurred 😞" });
+    }
   }
 };

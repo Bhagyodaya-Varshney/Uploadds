@@ -6,6 +6,7 @@ import { Btn } from "../Component/Btn";
 import { Profile } from "../Profile/profile";
 import { handleFilePassword } from "../hooks/handleFilePassword";
 import { handleFileUpload } from "../hooks/handleFileUpload";
+import { Recent_files } from "../Component/Recent_files";
 
 export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
   const [isImage, setIsImage] = useState(false);
@@ -36,8 +37,8 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     const files = Array.from(e.dataTransfer.files);
     if (files && files.length > 0) {
       const fileType = files[0].type.split("/")[0];
-      if (fileType === "image") {
-        setIsImage(true);
+      if (fileType === "image" || fileType === "pdf") {
+        setIsImage(fileType === "image");
         setFileName(files[0].name);
         setFile(files[0]);
       }
@@ -49,9 +50,9 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     e.preventDefault();
     const files = Array.from(e.target.files);
     if (files && files.length > 0) {
-      const fileType = files[0].type.split("/")[0];
-      if (fileType === "image") {
-        setIsImage(true);
+      const fileType = files[0].type;
+      if (fileType === "image" || fileType === "application/pdf") {
+        setIsImage(!isImage);
         setFileName(files[0].name);
         setFile(e.target.files[0]);
       }
@@ -60,17 +61,18 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
 
   const handleDownloadLink = async (e) => {
     e.preventDefault();
-    const res = await handleFilePassword(file,password,localStorage.getItem("token"));
-    if(res){
+    const res = await handleFilePassword(file, password, localStorage.getItem("token"));
+    if (res) {
       setDownloadLink(res);
     }
     setGenerateLink(!generateLink);
   };
+
   const handleUpload = async (e) => {
     e.preventDefault();
-    const res = await handleFileUpload(file,localStorage.getItem("token"));
-    if(res){
-      isImage(false);
+    const res = await handleFileUpload(file, localStorage.getItem("token"));
+    if (res) {
+      setIsImage(false); // Reset state after successful upload
     }
   };
 
@@ -122,6 +124,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                     <input
                       type="file"
                       id="file"
+                      accept=".pdf, image/*"
                       name="file"
                       required
                       onChange={handleSelectFile}
@@ -129,9 +132,9 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                     Select File to Upload
                   </label>
                 )}
-                <h4>After selecting img please provide below Action</h4>
+                <h4>After selecting file please provide below Action</h4>
               </div>
-              {isImage ? (
+              {isImage || fileName.endsWith(".pdf") ? (
                 <div className="selectStep">
                   <Btn text="Upload" width="48%" height="2rem" onClick={handleUpload}/>
                   <Btn
@@ -181,7 +184,17 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
               <img src={Img1} alt="" className="Img1" />
             )}
           </div>
-          <h2 id="dashEndBarHead">Recent Files</h2>
+          <h2 id="dashEndBarHead">Recent Uploads</h2>
+          <div className="RecentFile">
+              <div className="recentFileNameingDiv">
+                <h2>Name</h2>
+                <h2>Size</h2>
+                <h2>Last Modified</h2>
+                <h2>Action</h2>
+              </div>
+              <Recent_files/>
+              <Recent_files/>
+          </div>
         </div>
       )}
     </div>

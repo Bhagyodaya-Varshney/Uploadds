@@ -1,11 +1,16 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import ClearIcon from "@mui/icons-material/Clear";
 
-export function Input({ id,label, variant, width, type, value, set }) {
+export function Input({ id, label, variant, width, type, value, set }) {
+  const handleClear = () => set("");
+
   return (
     <TextField
-    required
-      id={"outlined-basic"+"-"+id}
+      required
+      id={"outlined-basic" + "-" + id}
       autoComplete="off"
       label={label}
       variant={variant}
@@ -13,6 +18,15 @@ export function Input({ id,label, variant, width, type, value, set }) {
       type={type}
       value={value}
       onChange={(e) => set(e.target.value)}
+      InputProps={{
+        endAdornment: value && (
+          <InputAdornment position="end">
+            <IconButton onClick={handleClear}>
+              <ClearIcon />
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
       sx={{
         width: width,
         "& .MuiOutlinedInput-root": {

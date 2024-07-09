@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
-const FileUpload = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const FileUploadSchema = new Schema({
   UserId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "UserModel",
+    ref: "UserModel", // Assuming UserModel is your User schema
     required: true,
   },
   path: {
@@ -16,11 +18,12 @@ const FileUpload = new mongoose.Schema({
   },
   downloadCount: {
     type: Number,
-    required: true,
     default: 0,
   },
+}, {
+  timestamps: true,
 });
 
-const FileUploadModel = mongoose.model("FileUploadModel", FileUpload);
+const FileUploadModel = mongoose.model("FileUploadModel", FileUploadSchema);
 
 export default FileUploadModel;
