@@ -1,0 +1,88 @@
+.profileDiv{
+    height: 100%;
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    background-color: rgb(240, 244, 253);
+}
+.profileMainDiv{
+    width: 100%;
+    height: 97%;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.memberProfileDiv{
+    width: 49%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.profileImg{
+    width: 50%;
+    height: 35%;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgb(226, 236, 252);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(226, 236, 252);
+    position: relative;
+    left: 25%;
+}
+.profileImg > img{
+    width: 95%;
+    height: 90%;
+}
+.memberInfoDiv{
+    width: 49%;
+    height: 98%;
+    background-color: blue;
+}
+#dashEndBarHead{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.passDiv{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 5%;
+    margin-top: 1%;
+}
+.passDiv > button{
+    padding: 2%;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(208, 223, 247);
+    cursor: pointer;
+    font-family: "IBM Plex Sans";
+    font-weight: 600;
+}
+.passDiv > button:hover{
+    background-color: rgb(196, 211, 235);
+}
+.changePassDiv{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}

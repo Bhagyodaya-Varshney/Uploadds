@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+.dashMain{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.dashSidebarMain{
+    height: 100%;
+    width: 8%;
+    background-color: rgb(249, 250, 254);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1%;
+}
+#logo{
+    font-family: "Playwrite ES";
+    font-weight: 900;
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+}
+.dashSidebarLower{
+    width: 50%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.dashSidebarLower > img{
+    width: 65%;
+    height: 22%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dashMidbarMain{
+    height: 100%;
+    width: 60%;
+}
+.dashMidbarMainDiv{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(240, 244, 253);
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+.QuickAccesDiv{
+    width: 100%;
+    height: 38%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2%;
+}
+.dashEndbarMain{
+    height: 100%;
+    width: 32%;
+    background-color: rgb(226, 236, 252);
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+}
+#dashEndBarHead{
+    font-family: "IBM Plex Sans";
+    font-weight: 400;
+}
+#dashEndBarHead-End{
+    margin-bottom: 10%;
+    font-family: "IBM Plex Sans";
+    font-weight: 400;
+}
+.dashCard{
+    border: 2px solid black;
+    height: 95%;
+    width: 17%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+    font-size: 0.7rem;
+}
+.dashCard:hover{
+    background-color: rgb(226, 236, 252);
+    border: 2px solid rgb(226, 236, 252);
+    cursor: pointer;
+}
+
+.fileArea{
+    width: 43%;
+    height: 100%;
+    border: 2px dashed black;
+    border-radius: 10px;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.fileArea:hover{
+    background-color: rgb(226, 236, 252);
+    transition: 0.5s;
+}
+.dragDropDiv{
+    width: 95%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1%;
+}
+.dragDropDiv > img{
+    width: 12%;
+    height: 50%;
+}
+.dragDropDiv > h1{
+    font-family: 'Poppins';
+    font-size: 1.2rem;
+    color: black;
+}
+.selectImgDiv{
+    width: 90%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 3%;
+    padding-bottom: 3.5%;
+}
+.selectImgDiv > h4{
+    font-size: 0.8rem;
+}
+.FileInputLabel{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(75, 99, 138);
+    font-family: "IBM Plex Sans";
+    font-weight: 700;
+    width: 90%;
+    height: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FileInputLabel > input[type="file"]{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.anotherArea{
+    width: 49%;
+    height: 96%;
+}
+.Img1{
+    width: 45%;
+    height: 100%;
+}
+
+.passwordDivM{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px dashed black;
+    border-radius: 10px;
+}
+.passwordDivM > div{
+    width: 95%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.passwordDivM > div > input{
+    background-color: transparent;
+    width: 90%;
+    height: 95%;
+    border: 2px solid black;
+    border-radius: 7px;
+    padding-left: 10px;
+}
+.passwordDivM > input:focus{
+    outline: none;
+}
+.passwordDivM > input::placeholder{
+    font-family: "IBM Plex Sans";
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: gray;
+}
+.passwordDivM > button{
+    width: 95%;
+    height: 30%;
+    background-color: rgb(75, 99, 138);
+    color: white;
+    font-family: "IBM Plex Sans";
+    font-weight: bolder;
+    border: none;
+    border-radius: 8px;
+}
+.selectStep{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.linkDivM{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+.linkDivM > h2{
+    font-family: "IBM Plex Sans";
+    font-size: 1rem;
+}
+.linkDivM > h3{
+    font-family: "IBM Plex Sans";
+    font-size: 0.8rem;
+}
