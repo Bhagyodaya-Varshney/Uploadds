@@ -11,14 +11,8 @@ export const handleFileUpload = async (file,token) => {
       body: formData,
     });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("Error:", errorText);
-      throw new Error("Failed to Upload File");
-    }
-
     const data = await res.json();
-    toast.success("File Uploaded successfully!");
+    toast.success(`${data.message}`);
     return data.fileLink;
 
   } catch (e) {

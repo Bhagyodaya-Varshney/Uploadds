@@ -7,6 +7,7 @@ import { userChangePassword } from "../controllers/userChangePassword.js";
 import { FileController } from "../controllers/fileController.js";
 import { FileUploadController } from "../controllers/fileController.js";
 import { fileDownloadController } from "../controllers/fileDowloadController.js";
+import { handleRecentFileController } from "../controllers/handleRecentFileController.js";
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ router.post("/changePassword",userChangePassword);
 router.post("/passUpload", upload.single("file"), FileController);
 router.post("/upload", upload.single("file"), FileUploadController);
 router.post("/download/:id",fileDownloadController);
+router.post("/handleRecentUpload",handleRecentFileController);
 
 
 export default router;

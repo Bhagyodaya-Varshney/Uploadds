@@ -18,15 +18,17 @@ export const fileDownloadController = async (req, res) => {
     file.downloadCount++;
     await file.save();
 
-    req.on('aborted', () => {
-      console.log('Request aborted by the client');
+    req.on("aborted", () => {
+      console.log("Request aborted by the client");
     });
 
     res.download(file.path, file.originalName, (err) => {
       if (err) {
         console.error(err);
         if (!res.headersSent) {
-          return res.status(500).json({ message: "Internal error occurred 😞" });
+          return res
+            .status(500)
+            .json({ message: "Internal error occurred 😞" });
         }
       }
     });

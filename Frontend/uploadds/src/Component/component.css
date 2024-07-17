@@ -3,4 +3,41 @@
     height: 50px;
     margin-top: 3px;
     margin-bottom: 3px;
+    font-weight: 900;
+    font-family: "Nunito";
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.recentFileMain > h2{
+    font-size: 1.1rem;
+}
+#recentFilesActionBtn{
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 900;
+    font-family: "Nunito";
+    width: 18%;
+    cursor: pointer;
+}
+#FileType{
+    font-size: 0.8rem;
+    padding: 0.5%;
+    border-radius: 0.5rem;
+    color: blue;
+    font-weight: 900;
+    background-color: rgba(128, 128, 128, 0.15);
+}
+#FileName{
+    width: 24%;
+}
+#FileTypeM{
+    font-size: 0.8rem;
+    padding: 0.5%;
+    border-radius: 0.5rem;
+    color: rebeccapurple;
+    font-weight: 900;
+    background-color: rgba(128, 128, 128, 0.15);
 }

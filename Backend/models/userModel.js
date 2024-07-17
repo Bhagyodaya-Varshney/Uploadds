@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true // Ensure emails are unique
     },
     password: {
         type: String,
@@ -16,13 +17,11 @@ const userSchema = new mongoose.Schema({
     },
     uploadCount: {
         type: Number,
-        default: 0, // Set a default value
-        validate: {
-            validator: function(value) {
-                return !isNaN(value); // Ensure the value is a number
-            },
-            message: props => `${props.value} is not a valid number!`
-        }
+        default: 0,
+    },
+    lastUpload: {
+        type: Date,
+        default: Date.now
     }
 });
 

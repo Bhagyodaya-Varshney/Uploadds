@@ -31,10 +31,12 @@ export function Input({ id, label, variant, width, type, value, set }) {
         width: width,
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
-            borderColor: "black",
+            borderColor: "rgba(0, 0, 0, 0.1)",
             borderWidth: "2px",
             borderRadius: "0.9rem",
             height: "3rem",
+            boxShadow: "2px 2px 10px 3px rgba(0, 0, 0, 0.2) inset",
+
           },
           "&:hover fieldset": {
             borderColor: "gray",

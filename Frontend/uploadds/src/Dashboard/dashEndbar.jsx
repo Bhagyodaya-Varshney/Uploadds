@@ -3,6 +3,7 @@ import "./dashboard.css";
 import { Input } from "../Component/Input";
 import { Btn } from "../Component/Btn";
 import { handlePasswordFileDownload } from "../hooks/handlePasswordFileDownload";
+import { Recent_files } from "../Component/Recent_files";
 
 export function DashEndBar() {
   const [DLink, setDLink] = React.useState("");
@@ -40,6 +41,18 @@ export function DashEndBar() {
         height={"7%"}
         onClick={handleDownload}
       />
+      <div className="loadingSignDiv"></div>
+      <h2 id="dashEndBarHead">Recent Downloads</h2>
+      <div className="recentDownloadDiv">
+        <div className="recentDownloadDivBar">
+        <h2>Name</h2>
+        <h2>Size</h2>
+        <h2>Action</h2>
+        </div>
+        <Recent_files />
+        <Recent_files />
+        <Recent_files />
+      </div>
     </div>
   );
 }

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 import fileImg from "../assests/file.png";
 import Img1 from "../assests/Img1.png";
 import { Btn } from "../Component/Btn";
 import { Profile } from "../Profile/profile";
+import { Recent_Upload } from "../RecentUpload/recent_upload";
 import { handleFilePassword } from "../hooks/handleFilePassword";
 import { handleFileUpload } from "../hooks/handleFileUpload";
 import { Recent_files } from "../Component/Recent_files";
+import toast from "react-hot-toast";
+import { handleRecentUpload } from "../hooks/handleRecentUploads";
 
 export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
   const [isImage, setIsImage] = useState(false);
@@ -17,6 +20,19 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
   const [generateLink, setGenerateLink] = useState(false);
   const [downloadLink, setDownloadLink] = useState("");
   const [isDragOver, setIsDragOver] = useState(false);
+  const [recentUploadsData, setRecentUploadsData] = useState([]);
+  const [showRecentFile, setShowRecentFile] = useState(true);
+
+  const recentUploads = async () => {
+    const res = await handleRecentUpload(localStorage.getItem("token"));
+    if (res) {
+      setRecentUploadsData(res);
+    }
+  };
+
+  useEffect(() => {
+    recentUploads();
+  }, []);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -36,11 +52,14 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     e.preventDefault();
     const files = Array.from(e.dataTransfer.files);
     if (files && files.length > 0) {
-      const fileType = files[0].type.split("/")[0];
-      if (fileType === "image" || fileType === "pdf") {
-        setIsImage(fileType === "image");
+      const fileType = files[0].type;
+      if (
+        fileType.startsWith("image/") ||
+        fileType.startsWith("application/")
+      ) {
+        setIsImage(!isImage);
         setFileName(files[0].name);
-        setFile(files[0]);
+        setFile(e.target.files[0]);
       }
     }
     setIsDragOver(false);
@@ -51,7 +70,11 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     const files = Array.from(e.target.files);
     if (files && files.length > 0) {
       const fileType = files[0].type;
-      if (fileType === "image" || fileType === "application/pdf") {
+      if (
+        fileType.startsWith("image/") ||
+        fileType.startsWith("application/") ||
+        fileType.startsWith("video/")
+      ) {
         setIsImage(!isImage);
         setFileName(files[0].name);
         setFile(e.target.files[0]);
@@ -61,7 +84,11 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
 
   const handleDownloadLink = async (e) => {
     e.preventDefault();
-    const res = await handleFilePassword(file, password, localStorage.getItem("token"));
+    const res = await handleFilePassword(
+      file,
+      password,
+      localStorage.getItem("token")
+    );
     if (res) {
       setDownloadLink(res);
     }
@@ -91,16 +118,23 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     setIsPassword(!isPassword);
   };
 
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    toast.success("Copied to Clipboard");
+  };
+  const handleViewAllClick = () => {
+    setShowRecentFile(!showRecentFile); // Toggle showRecentUploads state
+  };
   return (
     <div className="dashMidbarMain">
       {showProile ? (
         <Profile userProfileData1={userProfileData1} />
-      ) : (
+      ) : showRecentFile ? (
         <div className="dashMidbarMainDiv">
           <h2 id="dashEndBarHead">Quick Access</h2>
           <div className="QuickAccesDiv">
             <div
-              className={`fileArea ${isDragOver ? 'dragOver' : ''}`}
+              className={`fileArea ${isDragOver ? "dragOver" : ""}`}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragEnter={handleDragEnter}
@@ -124,8 +158,8 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                     <input
                       type="file"
                       id="file"
-                      accept=".pdf, image/*"
                       name="file"
+                      multiple={true}
                       required
                       onChange={handleSelectFile}
                     />
@@ -134,9 +168,14 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                 )}
                 <h4>After selecting file please provide below Action</h4>
               </div>
-              {isImage || fileName.endsWith(".pdf") ? (
+              {isImage ? (
                 <div className="selectStep">
-                  <Btn text="Upload" width="48%" height="2rem" onClick={handleUpload}/>
+                  <Btn
+                    text="Upload"
+                    width="48%"
+                    height="2rem"
+                    onClick={handleUpload}
+                  />
                   <Btn
                     text="Provide Password"
                     width="48%"
@@ -165,7 +204,10 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                     </button>
                   </div>
                   <button
-                    style={{ opacity: `${isImage ? "1" : "0"}` }}
+                    style={{
+                      opacity: `${isImage ? "1" : "0"}`,
+                      background: "black",
+                    }}
                     onClick={handleDownloadLink}
                   >
                     Generate Link
@@ -175,9 +217,30 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                   <h2 style={{ opacity: `${generateLink ? "1" : "0"}` }}>
                     Download Link for File:
                   </h2>
-                  <h3 style={{ opacity: `${generateLink ? "1" : "0"}` }}>
-                    {downloadLink}
-                  </h3>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      opacity: `${generateLink ? "1" : "0"}`,
+                      background: "white",
+                      padding: "0.5rem",
+                      borderRadius: "0.5rem",
+                    }}
+                  >
+                    <h3>{downloadLink}</h3>
+                    <button
+                      onClick={() => copyToClipboard(downloadLink)}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                    >
+                      📄
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -186,17 +249,40 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
           </div>
           <h2 id="dashEndBarHead">Recent Uploads</h2>
           <div className="RecentFile">
-              <div className="recentFileNameingDiv">
-                <h2>Name</h2>
-                <h2>Size</h2>
-                <h2>Last Modified</h2>
-                <h2>Action</h2>
-              </div>
-              <Recent_files/>
-              <Recent_files/>
+            <div className="recentFileNameingDiv">
+              <h2>Name</h2>
+              <h2>Type</h2>
+              <h2>Last Modified</h2>
+              <h2>Action</h2>
+            </div>
+            {recentUploadsData && recentUploadsData.length > 0 ? (
+              recentUploadsData
+                .slice(0, 3)
+                .map((data) => (
+                  <Recent_files
+                    name={data.originalName.slice(0, 18) + "..."}
+                    type={data.originalName
+                      .split(".")
+                      [data.originalName.split(".").length - 1].toUpperCase()}
+                    date={new Date(data.createdAt).toLocaleString().slice(0, 9)}
+                  />
+                ))
+            ) : (
+              <p>No recent uploads found.</p>
+            )}
+            {recentUploadsData.length > 0 ? (
+              <button
+                id="ViewAllBtn"
+                onClick={handleViewAllClick}
+              >
+                View All{" "}
+              </button>
+            ) : null}
           </div>
         </div>
-      )}
+      ) : 
+        <Recent_Upload recentUplodData={recentUploadsData}/>
+      }
     </div>
   );
 }

@@ -10,6 +10,7 @@ function App() {
   <Routes>
     <Route path='/' element={<HomeScreen/>}/>
     <Route path='/home' element={<Dashboard/>}/>
+    <Route path='/recentUpload' element={<Dashboard/>}/>
   </Routes>
   <Toaster/>
   </>

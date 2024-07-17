@@ -4,30 +4,39 @@ import UserModel from "../models/userModel.js";
 import FileUploadModel from "../models/uploadFile.js";
 import bcrypt from "bcrypt";
 
+const DAILY_LIMIT = 15;
+
 export const FileController = async (req, res) => {
   const { password, token } = req.body;
 
 
-  if (!req.file) {
-    console.log("No file uploaded");
-    return res.status(400).send({ message: "No file uploaded" });
-  }
+  if (!req.file)  return res.status(400).send({ message: "No file uploaded" });
 
-  if (!password) {
-    console.log("Password is required");
-    return res.status(400).send({ message: "Password is required" });
-  }
+  if (!password) return res.status(400).send({ message: "Password is required" });
 
   try {
     const decodedData = jwt.verify(token, "6398693679");
     const User = await UserModel.findOne({ email: decodedData.email });
-    const id = User._id;
-    const uploadCount = User.uploadCount+1;
+
+    const currentDate = new Date();
+    const lastuploadDate = User.lastUpload;
+    const isSameDay = currentDate.toDateString() === lastuploadDate.toDateString();
+
+    if(!isSameDay){
+      User.uploadCount = 0;
+      User.lastuploadDate = currentDate;
+    }
+
+    if(User.uploadCount >= DAILY_LIMIT) return res.status(500).json({message:"Daily Upload Limit Reached"});
+
+
+    User.uploadCount+1;
+    await User.save();
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const fileData = {
-      UserId: id,
+      UserId: User._id,
       originalName: req.file.originalname,
       path: req.file.path,
       password: hashedPassword,
@@ -36,7 +45,6 @@ export const FileController = async (req, res) => {
 
     
     const file = new FileModel(fileData);
-    await UserModel.updateOne({email:decodedData.email},{uploadCount:uploadCount});
     await file.save();
 
     return res.status(200).json({
@@ -56,19 +64,29 @@ export const FileUploadController = async (req, res) => {
   const { token } = req.body;
 
 
-  if (!req.file) {
-    console.log("No file uploaded");
-    return res.status(400).send({ message: "No file uploaded" });
-  }
+  if (!req.file)  return res.status(400).send({ message: "No file uploaded" });
+  
 
   try {
     const decodedData = jwt.verify(token, "6398693679");
     const User = await UserModel.findOne({ email: decodedData.email });
-    const id = User._id;
-    const uploadCount = User.uploadCount+1;
+
+    const currentDate = new Date();
+    const lastuploadDate = User.lastUpload;
+    const isSameDay = currentDate.toDateString() === lastuploadDate.toDateString();
+
+    if(!isSameDay){
+      User.uploadCount = 0;
+      User.lastuploadDate = currentDate;
+    }
+
+    if(User.uploadCount >= DAILY_LIMIT) return res.status(500).json({message:"Daily Upload Limit Reached"});
+
+    User.uploadCount+1;
+    await User.save();
 
     const fileData = {
-      UserId: id,
+      UserId: User._id,
       originalName: req.file.originalname,
       path: req.file.path,
       downloadCount: 0,
@@ -76,7 +94,6 @@ export const FileUploadController = async (req, res) => {
 
     
     const file = new FileUploadModel(fileData);
-    await UserModel.updateOne({email:decodedData.email},{uploadCount:uploadCount});
     await file.save();
 
     return res.status(200).json({
