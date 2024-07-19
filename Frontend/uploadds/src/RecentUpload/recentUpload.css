@@ -1,0 +1,15 @@
+#recentUploadHeadDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+#b{
+    width: 100%;
+    padding-left: 1%;
+    padding-right: 1%;
+}

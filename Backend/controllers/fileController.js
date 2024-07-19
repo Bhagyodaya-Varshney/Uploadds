@@ -24,13 +24,13 @@ export const FileController = async (req, res) => {
 
     if(!isSameDay){
       User.uploadCount = 0;
-      User.lastuploadDate = currentDate;
+      User.lastUpload = currentDate;
     }
 
     if(User.uploadCount >= DAILY_LIMIT) return res.status(500).json({message:"Daily Upload Limit Reached"});
 
 
-    User.uploadCount+1;
+    User.uploadCount = User.uploadCount+1;
     await User.save();
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -77,12 +77,12 @@ export const FileUploadController = async (req, res) => {
 
     if(!isSameDay){
       User.uploadCount = 0;
-      User.lastuploadDate = currentDate;
+      User.lastUpload = currentDate;
     }
 
     if(User.uploadCount >= DAILY_LIMIT) return res.status(500).json({message:"Daily Upload Limit Reached"});
-
-    User.uploadCount+1;
+    console.log(User.uploadCount+1);
+    User.uploadCount = User.uploadCount+1;
     await User.save();
 
     const fileData = {

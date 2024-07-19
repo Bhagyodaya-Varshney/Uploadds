@@ -101,6 +101,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     if (res) {
       setIsImage(false); // Reset state after successful upload
     }
+    window.location.reload();
   };
 
   const handlePassCross = () => {
@@ -125,6 +126,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
   const handleViewAllClick = () => {
     setShowRecentFile(!showRecentFile); // Toggle showRecentUploads state
   };
+
   return (
     <div className="dashMidbarMain">
       {showProile ? (
@@ -281,7 +283,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
           </div>
         </div>
       ) : 
-        <Recent_Upload recentUplodData={recentUploadsData}/>
+        <Recent_Upload recentUplodData={recentUploadsData} handleViewAllClick={handleViewAllClick}/>
       }
     </div>
   );

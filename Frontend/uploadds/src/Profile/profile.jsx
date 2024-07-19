@@ -5,6 +5,8 @@ import user from "../assests/user.png";
 import { Input } from "../Component/Input";
 import { Btn } from "../Component/Btn";
 
+import {motion} from "framer-motion";
+
 import { changePassHook } from "../hooks/changePassword";
 
 export function Profile({ userProfileData1 }) {
@@ -29,7 +31,13 @@ export function Profile({ userProfileData1 }) {
     }
   };
   return (
-    <div className="profileDiv">
+    <motion.div
+      className="profileDiv"
+      initial={{ opacity: 0, y: 50 }}
+      exit={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
       <h2 id="dashEndBarHead">User Profile🙎‍♂️</h2>
       <div className="profileMainDiv">
         <div className="memberProfileDiv">
@@ -108,6 +116,6 @@ export function Profile({ userProfileData1 }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
