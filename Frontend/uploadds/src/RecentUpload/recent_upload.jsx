@@ -25,6 +25,7 @@ export function Recent_Upload({ recentUplodData, handleViewAllClick }) {
         {recentUplodData && recentUplodData.length > 0
           ? recentUplodData.map((data) => (
               <Recent_files
+                _id={data._id}
                 name={data.originalName.slice(0, 18) + "..."}
                 type={data.originalName
                   .split(".")

@@ -1,4 +1,9 @@
-#recentUploadHeadDiv{
+.recentUploadMain {
+    max-height: 100vh; /* Adjust the height as needed */
+    overflow: hidden;
+  }
+  
+  #recentUploadHeadDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -7,9 +12,37 @@
     margin-top: 10px;
     padding-left: 2%;
     padding-right: 2%;
-}
-#b{
+  }
+  
+  .recentFileNameingDiv {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  
+  #b {
     width: 100%;
+    max-height: 80vh; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
     padding-left: 1%;
     padding-right: 1%;
-}
+  }
+  
+  /* Add styles to make the scroll bar look better if desired */
+  #b::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  #b::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  #b::-webkit-scrollbar-thumb {
+    background: #000000;
+  }
+  
+  #b::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  

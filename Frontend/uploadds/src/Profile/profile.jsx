@@ -102,8 +102,8 @@ export function Profile({ userProfileData1 }) {
             <h2>uploadds Premium</h2>
             <div className="mainPaymentCard">
               <div id="a">
-                <h3>🔵 Unlimited Uploads Per Day</h3>
-                <h3>🔵 Any 1 device at a time</h3>
+                <h3>🟡 Unlimited Uploads Per Day</h3>
+                <h3>🟡 Any 1 device at a time</h3>
               </div>
               <div className="monthPrice">
                 <h3>1 Month</h3>

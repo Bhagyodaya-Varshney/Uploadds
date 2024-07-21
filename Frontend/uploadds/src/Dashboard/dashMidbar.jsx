@@ -57,9 +57,9 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
         fileType.startsWith("image/") ||
         fileType.startsWith("application/")
       ) {
-        setIsImage(!isImage);
+        setIsImage(true);
         setFileName(files[0].name);
-        setFile(e.target.files[0]);
+        setFile(files[0]);
       }
     }
     setIsDragOver(false);
@@ -75,9 +75,9 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
         fileType.startsWith("application/") ||
         fileType.startsWith("video/")
       ) {
-        setIsImage(!isImage);
+        setIsImage(true);
         setFileName(files[0].name);
-        setFile(e.target.files[0]);
+        setFile(files[0]);
       }
     }
   };
@@ -91,8 +91,8 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     );
     if (res) {
       setDownloadLink(res);
+      setGenerateLink(true);
     }
-    setGenerateLink(!generateLink);
   };
 
   const handleUpload = async (e) => {
@@ -100,15 +100,15 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     const res = await handleFileUpload(file, localStorage.getItem("token"));
     if (res) {
       setIsImage(false); // Reset state after successful upload
+      window.location.reload(); // Reload to reflect changes
     }
-    window.location.reload();
   };
 
   const handlePassCross = () => {
     setPassword("");
   };
 
-  const handdleCross = () => {
+  const handleCross = () => {
     setIsImage(false);
     setFileName("");
     setIsPassword(false);
@@ -123,6 +123,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
     navigator.clipboard.writeText(text);
     toast.success("Copied to Clipboard");
   };
+
   const handleViewAllClick = () => {
     setShowRecentFile(!showRecentFile); // Toggle showRecentUploads state
   };
@@ -153,7 +154,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                     {fileName.length > 30
                       ? fileName.slice(0, 30) + "..."
                       : fileName}{" "}
-                    | <button onClick={handdleCross}>❌</button>
+                    | <button onClick={handleCross}>❌</button>
                   </div>
                 ) : (
                   <label className="FileInputLabel">
@@ -262,29 +263,32 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                 .slice(0, 3)
                 .map((data) => (
                   <Recent_files
+                    _id={data._id}
                     name={data.originalName.slice(0, 18) + "..."}
                     type={data.originalName
                       .split(".")
                       [data.originalName.split(".").length - 1].toUpperCase()}
-                    date={new Date(data.createdAt).toLocaleString().slice(0, 9)}
+                    date={new Date(data.createdAt)
+                      .toLocaleString()
+                      .slice(0, 9)}
                   />
                 ))
             ) : (
               <p>No recent uploads found.</p>
             )}
             {recentUploadsData.length > 0 ? (
-              <button
-                id="ViewAllBtn"
-                onClick={handleViewAllClick}
-              >
-                View All{" "}
+              <button id="ViewAllBtn" onClick={handleViewAllClick}>
+                View All
               </button>
             ) : null}
           </div>
         </div>
-      ) : 
-        <Recent_Upload recentUplodData={recentUploadsData} handleViewAllClick={handleViewAllClick}/>
-      }
+      ) : (
+        <Recent_Upload
+          recentUplodData={recentUploadsData}
+          handleViewAllClick={handleViewAllClick}
+        />
+      )}
     </div>
   );
 }

@@ -124,11 +124,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    border-radius: 1.6rem;
+    border-radius: 1.7rem;
     border: 2px solid black;
+    background-color: rgba(20, 20, 20);
 }
 .paymentCard > h2{
-    font-size: 1.6rem;    font-family: "Playwrite PE";
+    font-size: 1.6rem;    font-family: "Playwrite PE";  color: goldenrod;
 }
 .mainPaymentCard{
     width: 100%;
@@ -144,6 +145,7 @@
     font-family: "Nunito";
     font-weight: 800;
     padding-top: 5%;
+    color: white;
 }
 .monthPrice{
     width: 100%;
@@ -169,4 +171,5 @@
 .monthPrice > h2{
     font-size: 3rem;
     font-family: "Quicksand";
+    color: goldenrod;
 }
