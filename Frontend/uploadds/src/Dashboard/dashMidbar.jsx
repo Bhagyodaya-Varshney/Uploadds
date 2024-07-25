@@ -127,6 +127,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
   const handleViewAllClick = () => {
     setShowRecentFile(!showRecentFile); // Toggle showRecentUploads state
   };
+  
 
   return (
     <div className="dashMidbarMain">
@@ -281,7 +282,7 @@ export function DashMidBar({ showProile, setShowProfile, userProfileData1 }) {
                 View All
               </button>
             ) : null}
-          </div>
+          </div> 
         </div>
       ) : (
         <Recent_Upload

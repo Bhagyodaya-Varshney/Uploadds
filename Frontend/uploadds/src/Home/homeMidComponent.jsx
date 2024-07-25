@@ -3,6 +3,7 @@ import "./homeCSS.css";
 import { Link } from "react-router-dom";
 import { Textfield } from "../Component/textField";
 import { AuthBtn } from "../Component/authBtn";
+import ForgetPassword from "../ForgetPassword/forgetPassword.jsx";
 
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +25,8 @@ export function HomeMidComponent() {
   const [RPassword, setRpassword] = useState("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [showForgetPassDiv , setShowForgetPassDiv] = useState(false);
 
   const { login } = useLogin();
 
@@ -48,9 +51,14 @@ export function HomeMidComponent() {
   const loginHandle = async(e) =>{
     e.preventDefault();
     const res = await login(LEmail,LPassword);
-    if(res=="User Logged In Successfully"){navigate("/home");}
+    if(res=="User Logged In Successfully"){navigate("/dashboard");}
     setLemail("");
     setLpassword("");
+
+  }
+
+  const handleShowForgetPassDiv = (e) =>{
+    setShowForgetPassDiv(!showForgetPassDiv);
   }
 
   return (
@@ -111,9 +119,10 @@ export function HomeMidComponent() {
                     set={setLpassword}
                     type={"password"}
                   />
-                  <Link to="/" id="forgetPass">
+                  <button  id="forgetPass" onClick={handleShowForgetPassDiv}>
                     Forget Password?
-                  </Link>
+                  </button>
+                  {showForgetPassDiv && <ForgetPassword handleShowForgetPassDiv={handleShowForgetPassDiv} showForgetPassDiv={showForgetPassDiv}/>}
                     <AuthBtn text={"Login"} width={"95%"} height={"3rem"} />
                 </form>
               ) : (
@@ -180,5 +189,6 @@ export function HomeMidComponent() {
         </div>
       </div>
     </div>
+
   );
 }

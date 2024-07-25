@@ -8,7 +8,7 @@ export function HomeScreen(){
     const Navigate = useNavigate();
     useEffect(() => {
         if(localStorage.getItem("token")){
-            Navigate("/home");
+            Navigate("/dashboard");
     }});
 
     return <div className="homeMain">

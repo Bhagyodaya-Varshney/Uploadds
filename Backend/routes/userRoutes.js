@@ -10,9 +10,12 @@ import {
   FileController,
   FileUploadController
 } from "../controllers/fileController.js";
-import { fileDownloadController } from "../controllers/fileDowloadController.js";
+import { fileDownloadController,fileDownloadController1 } from "../controllers/fileDowloadController.js";
 import { handleRecentFileController } from "../controllers/handleRecentFileController.js";
 import { fetchFile } from "../controllers/fetchFile.js";
+import { recentFileDeleteController } from "../controllers/recentFileDeleteController.js";
+import { handleRecentFileDownloadController } from "../controllers/handleRecentFileDownload.js";
+import { ForgetPasswordController } from "../controllers/forgetPasswordController.js";
 
 const router = express.Router();
 
@@ -34,7 +37,11 @@ router.post("/changePassword", userChangePassword);
 router.post("/passUpload", upload.single("file"), FileController);
 router.post("/upload", upload.single("file"), FileUploadController);
 router.post("/download/:id", fileDownloadController);
+router.post("/download1/:id", fileDownloadController1);
 router.post("/handleRecentUpload", handleRecentFileController);
-router.get("/file/:id", fetchFile); // Changed to GET
+router.get("/file/:id", fetchFile);
+router.post("/:id/recentDelete",recentFileDeleteController);
+router.post("/:id/recentDownload",handleRecentFileDownloadController);
+router.post("/forgetPassword",ForgetPasswordController);
 
 export default router;

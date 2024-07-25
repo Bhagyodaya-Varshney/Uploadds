@@ -153,11 +153,16 @@
 }
 #forgetPass{
     font-family: "Playwrite NG Modern";
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 400;
     color: rgba(0, 0, 0);
     text-decoration: none;
-
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+#forgetPass:hover{
+    color: rgba(0, 0, 0, 0.5);
 }
 .HomeMidLowerLower{
     height: 20%;

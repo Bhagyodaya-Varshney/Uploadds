@@ -34,6 +34,10 @@ const validate = (fullname,email,password,confirmPassword) =>{
         toast.error("Please Enter Password😞");
         return false;
     }
+    if (password.length < 5) {
+        toast.error("Password must be at least 5 characters long 😞");
+        return false;
+      }
     if(!confirmPassword){
         toast.error("Please Enter Confirm Password😞");
         return false;
