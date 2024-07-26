@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { HomeScreen } from './Home/homeScreen';
 import {Dashboard} from './Dashboard/dashboard';
+import { Main } from './Main/main';
 import ProtectedRoute from './context/protectRoute';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         <Route path='/' element={<HomeScreen />} />
         <Route path='/dashboard' element={
           <ProtectedRoute>
-            <Dashboard />
+            <Main />
           </ProtectedRoute>
         } />
       </Routes>

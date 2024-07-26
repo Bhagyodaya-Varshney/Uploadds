@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./showFile.css";
-import { Loading } from "../Component/loading";
 import { FetchShowFile } from "../hooks/FetchShowFile";
 
 export const ShowFile = ({ id, onClose }) => {
@@ -98,7 +97,11 @@ export const ShowFile = ({ id, onClose }) => {
   };
 
   if (loading) {
-    return <Loading />;
+    return <div class="loader">
+    <li class="ball"></li>
+    <li class="ball"></li>
+    <li class="ball"></li>
+  </div>;
   }
 
   if (error) {

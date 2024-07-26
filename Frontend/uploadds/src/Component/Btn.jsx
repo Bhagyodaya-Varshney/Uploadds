@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 
 export function Btn({ text, width, height, onClick}) {
     return <Button
-    type="submit"
     onClick={onClick}
     sx={{
       background: 'black',

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+
+.OtpMain{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.250);
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.otpDiv{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 40%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1%;
+}
+.otpSlogan > h2{
+    font-family: "Dosis";
+    font-size: 1rem;
+    font-weight: 700;
+    color: gray;
+}
+.otpSlogan{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+.otpHead{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.otpHead > h1{
+    font-family: "LXGW WenKai Mono TC";
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    top: 5;
+    left: 5;
+}
+.closeButton {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+.otpInput{
+    width: 50%;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.otpInput > input{
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: black;
+    font-family: "Dosis";
+}
+.otpInput > input:focus{
+    outline: none;
+}
+.otpInput > input::placeholder{
+    font-family: "Dosis";
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(128, 128, 128, 0.250);
+    text-align: center;
+}

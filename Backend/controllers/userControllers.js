@@ -4,7 +4,13 @@ import bcrypt from "bcrypt";
 
 export const registerController = async (req, res) => {
   try {
-    const { fullname, email, password, confirmPassword, uploadCount = 0 } = req.body;
+    const {
+      fullname,
+      email,
+      password,
+      confirmPassword,
+      uploadCount = 0,
+    } = req.body;
 
     // Check if passwords match
     if (password !== confirmPassword) {
@@ -43,7 +49,6 @@ export const registerController = async (req, res) => {
   }
 };
 
-
 export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -55,13 +60,11 @@ export const loginController = async (req, res) => {
     );
     if (!user || !correctPassword)
       return res.status(400).json({ message: "Invalid Credentials" });
-    return res
-      .status(200)
-      .json({
-        message: "User Logged In Successfully",
-        userId: user._id,
-        token: generateToken(user._id.toString, user.email),
-      });
+    return res.status(200).json({
+      message: "User Logged In Successfully",
+      userId: user._id,
+      token: generateToken(user._id.toString, user.email),
+    });
   } catch (e) {
     console.log(e);
     return res.status(500).json({ message: "Internal Server Error Occur" });

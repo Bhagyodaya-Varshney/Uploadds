@@ -3,18 +3,21 @@ import "./homeCSS.css";
 import { Link } from "react-router-dom";
 import { Textfield } from "../Component/textField";
 import { AuthBtn } from "../Component/authBtn";
+import { Btn } from "../Component/Btn";
 import ForgetPassword from "../ForgetPassword/forgetPassword.jsx";
+import { otpHook } from "../hooks/otpHooks.js";
 
 import { useNavigate } from "react-router-dom";
 
-import {registerHook} from "../hooks/registerHook.js"
+import { registerHook } from "../hooks/registerHook.js";
+import { Loading } from "../Component/loading.jsx";
 import useLogin from "../hooks/loginHook.js";
+import { Otp } from "../Otp/otp.jsx";
 
 export function HomeMidComponent() {
   const [loginBtn, setLoginBtn] = useState(true);
 
   const navigate = useNavigate();
-  
 
   const [LEmail, setLemail] = useState("");
   const [REmail, setRemail] = useState("");
@@ -26,10 +29,14 @@ export function HomeMidComponent() {
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [showForgetPassDiv , setShowForgetPassDiv] = useState(false);
+  const [showForgetPassDiv, setShowForgetPassDiv] = useState(false);
+  const [otpShow, setOtpShow] = useState(false);
+  const [otp , setOtp] = useState("");
+
+  const [loading, setLoading] = useState(true);
+  const [inputOtp,setUserOtp] = useState("");
 
   const { login } = useLogin();
-
 
   const loginBtnHandler = () => {
     setLoginBtn(true);
@@ -38,33 +45,65 @@ export function HomeMidComponent() {
     setLoginBtn(false);
   };
 
-  const registerHandle = async(e) => {
+  const registerHandle = async (e) => {
     e.preventDefault();
-    const res = await registerHook(fullName,REmail,RPassword,confirmPassword);
+    if(otp == inputOtp){
+      const res = await registerHook(
+        fullName,
+        REmail,
+        RPassword,
+        confirmPassword
+      );
+    }
     setFullName("");
     setRemail("");
     setRpassword("");
     setConfirmPassword("");
+    setOtpShow(!otpShow);
     setLoginBtn(true);
-  }
+  };
 
-  const loginHandle = async(e) =>{
+  const loginHandle = async (e) => {
     e.preventDefault();
-    const res = await login(LEmail,LPassword);
-    if(res=="User Logged In Successfully"){navigate("/dashboard");}
+    const res = await login(LEmail, LPassword);
+    if (res == "User Logged In Successfully") {
+      navigate("/dashboard");
+    }
     setLemail("");
     setLpassword("");
+  };
 
-  }
-
-  const handleShowForgetPassDiv = (e) =>{
+  const handleShowForgetPassDiv = (e) => {
     setShowForgetPassDiv(!showForgetPassDiv);
+  };
+
+  const handleOtpShow = (e) => {
+    setOtpShow(!otpShow);
+    setLoading(!loading);
   }
+
+  const handleOtp = async (e) => {
+    e.preventDefault();
+    setLoading(true); // Set loading to true at the start
+
+    try {
+        const res = await otpHook(fullName, REmail, RPassword, confirmPassword, setOtpShow, otpShow);
+        if (res != "error") {
+          setLoading(false);
+          setOtp(res); // Stop loading when the request is done // Stop loading if there's an error
+        } 
+    } catch (error) {
+        console.error("An error occurred:", error);
+        setLoading(false); // Ensure loading is stopped in case of an error
+    }
+};
+
+
 
   return (
     <div className="HomeMidComponentMain">
       <div className="HomeMidUpper">
-        <Link to="/" id="Logo">
+        <Link to="/" className="Logo">
           uploadds
         </Link>
 
@@ -101,6 +140,7 @@ export function HomeMidComponent() {
             <div className="loginFormDiv">
               {loginBtn ? (
                 <form id="LoginForm" onSubmit={loginHandle}>
+                  {/* onSubmit={loginHandle} */}
                   <Textfield
                     id={"LoginEmail"}
                     label={"Email"}
@@ -119,11 +159,21 @@ export function HomeMidComponent() {
                     set={setLpassword}
                     type={"password"}
                   />
-                  <button  id="forgetPass" onClick={handleShowForgetPassDiv}>
+                  <button id="forgetPass" onClick={handleShowForgetPassDiv}>
                     Forget Password?
                   </button>
-                  {showForgetPassDiv && <ForgetPassword handleShowForgetPassDiv={handleShowForgetPassDiv} showForgetPassDiv={showForgetPassDiv}/>}
-                    <AuthBtn text={"Login"} width={"95%"} height={"3rem"} />
+                  {showForgetPassDiv && (
+                    <ForgetPassword
+                      handleShowForgetPassDiv={handleShowForgetPassDiv}
+                      showForgetPassDiv={showForgetPassDiv}
+                    />
+                  )}
+                  <AuthBtn
+                    text={"Login"}
+                    width={"95%"}
+                    height={"3rem"}
+                    onClick={loginHandle}
+                  />
                 </form>
               ) : (
                 <form id="CreateAccountForm" onSubmit={registerHandle}>
@@ -162,8 +212,16 @@ export function HomeMidComponent() {
                     value={confirmPassword}
                     set={setConfirmPassword}
                     type={"password"}
-                  />{" "}
-                    <AuthBtn text={"Create Account"} width={"95%"} height={"3rem"}/>
+                  />
+                  {otpShow && <Otp handleOtpShow={handleOtpShow} registerHandle={registerHandle} setUserOtp={setUserOtp}/>}
+                  {
+                    loading ? <Btn
+                    text={"Create Account"}
+                    width={"95%"}
+                    height={"3rem"}
+                    onClick={handleOtp}
+                  />:<Loading/>
+                  }
                 </form>
               )}
             </div>
@@ -189,6 +247,5 @@ export function HomeMidComponent() {
         </div>
       </div>
     </div>
-
   );
 }

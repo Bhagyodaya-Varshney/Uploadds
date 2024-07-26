@@ -29,13 +29,13 @@ export const ForgetPasswordController = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "mtrbhagyodayame@gmail.com",
-        pass: "Bhagyodaya@12345", // Make sure to use a valid password or app password
+        user: "bhagyodayavarshney14@gmail.com",
+        pass: "Bhagy@1234",
       },
     });
 
     const mailOptions = {
-      from: "mtrbhagyodayame@gmail.com",
+      from: "bhagyodayavarshney14@gmail.com",
       to: email,
       subject: "Password Reset",
       text: `Your changed password for Uploadds is ${result}`,
@@ -43,16 +43,13 @@ export const ForgetPasswordController = async (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.error("Error sending email:", error);
         return res
           .status(500)
           .send({ error: "Failed to send email. Please try again later." });
       }
-      console.log("Email sent:", info.response);
       res.status(200).json({ message: "New Password shared to your email" });
     });
   } catch (e) {
-    console.error("Error in ForgetPasswordController:", e);
     res.status(500).send({ error: "Internal Server Error" });
   }
 };

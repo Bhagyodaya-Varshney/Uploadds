@@ -13,7 +13,7 @@ export const handleFileUpload = async (file,token) => {
 
     const data = await res.json();
     toast.success(`${data.message}`);
-    return data.fileLink;
+    return data.message;
 
   } catch (e) {
     console.error(e);
