@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DK+Uloopet:wght@100..400&display=swap');
+
+
+.composeMain{
+    position: fixed;
+    top: 38vh;
+    left: 71vw;
+    width: 25vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.composeHead{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 2%;
+    padding-right: 2%;
+    font-family: "Playwrite DK Uloopet";
+    font-weight: bolder;
+}
+.composeHead > button{
+    background-color: transparent;
+    border: none;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+.composeTo{
+    width: 100%;
+    height: 8%;
+    font-family: "Playwrite DK Uloopet";
+    font-size: 0.8em;
+    padding-left: 2%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.composeTo > input{
+    width: 90%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding-left: 2%;
+    font-family: "Playwrite DK Uloopet";
+    font-size: 0.8em;
+}
+.composeSub{
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.composeSub > input{
+    width: 90%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding-left: 2%;
+    font-family: "Playwrite DK Uloopet";
+    font-size: 0.8em;
+}
+.composeBody{
+    width: 100%;
+    height: 70%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.composeBody > textarea{
+    width: 95%;
+    height: 95%;
+    border: none;
+    outline: none;
+    padding-left: 2%;
+    font-family: "Playwrite DK Uloopet";
+    font-size: 0.8em;
+    resize: none;
+}
+.composeBtn{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.composeBtn > img{
+    height: 50%;
+    width: 4.5%;
+    cursor: pointer;
+}

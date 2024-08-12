@@ -3,7 +3,6 @@ import "./dashboard.css";
 
 import { useState } from "react";
 
-import { DashSideBar } from "./dashSidebar";
 import { DashMidBar } from "./dashMidbar";
 import { DashEndBar } from "./dashEndbar";
 
@@ -23,7 +22,6 @@ export function Dashboard() {
 
 
     return <div className="dashMain">
-        <DashSideBar showProfile={showProfile}/>
         <DashMidBar showProile={showProile} setShowProfile={setShowProfile} userProfileData1={profileData1}/>
         <DashEndBar/>
     </div>

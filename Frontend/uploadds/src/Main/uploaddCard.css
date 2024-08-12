@@ -1,0 +1,93 @@
+.uploadCardMain{
+    width: 100%;
+    height: 6%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.uploadCardMainY{
+    background-color: rgba(0, 0, 0, 0.07);
+    width: 100%;
+    height: 6%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.uploadCardMain:hover{
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.uploadCardMainY:hover{
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.hoverIcon{
+    display: none;
+    cursor: pointer;
+    background:none;
+    width: 14%;
+    height: max-content;
+    padding-right: 4%;
+}
+.hoverIcon> h1{
+    font-size: 1.5em;
+    color: black;
+    margin: 0;
+    float: right;
+}
+.uploadCardMain:hover .hoverIcon{
+    display: block;
+}
+.uploadCardMainY:hover .hoverIcon{
+    display: block;
+}
+#checkBoxId{
+    border: none;
+    margin-left: 2.2%;
+    cursor: pointer;
+}
+.uploadcardFullNameDiv{
+    height: 90%;
+    width: 13%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 1%;
+    font-weight: bolder;
+}
+.uploadCardSubjectDiv{
+    height: 90%;
+    width: 25%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 1%;
+    font-weight: 600;
+}
+.uploadCardBodyDiv{
+    height: 90%;
+    width: 44%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 1%;
+}
+.uploadCardTimeStampDiv{
+    height: 90%;
+    width: 14%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 1.5%;
+}
+.uploadCardMain:hover .uploadCardTimeStampDiv{
+    display: none;
+}
+.uploadCardMainY:hover .uploadCardTimeStampDiv{
+    display: none;
+}
