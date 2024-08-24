@@ -1,100 +1,228 @@
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+DK+Uloopet:wght@100..400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+DK+Uloopet:wght@100..400&display=swap");
+
+.composeMain {
+  position: fixed;
+  top: 38vh;
+  left: 71vw;
+  width: 25vw;
+  height: 60vh;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.composeHead {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 2%;
+  padding-right: 2%;
+  font-family: "Playwrite DK Uloopet";
+  font-weight: bolder;
+}
+.composeHead > button {
+  background-color: transparent;
+  border: none;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+.composeTo {
+  width: 100%;
+  height: 8%;
+  font-family: "Playwrite DK Uloopet";
+  font-size: 0.8em;
+  padding-left: 2%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.composeTo > input {
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 2%;
+  font-family: "Playwrite DK Uloopet";
+  font-size: 0.8em;
+}
+.composeSub {
+  width: 100%;
+  height: 8%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.composeSub > input {
+  width: 90%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 2%;
+  font-family: "Playwrite DK Uloopet";
+  font-size: 0.8em;
+}
+.composeBody {
+  width: 100%;
+  height: 60%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.composeBtn {
+  width: 100%;
+  height: 8%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.composeBtn > img {
+  height: 50%;
+  width: 4.5%;
+  cursor: pointer;
+}
+
+#textArea {
+  width: 100%;
+  height: 98%;
+  border: none;
+  outline: none;
+  resize: none;
+  min-height: 100px;
+  padding-left: 2%;
+  font-family: "Playwrite DK Uloopet";
+  font-size: 0.8em;
+  resize: none;
+}
+#textArea::-webkit-scrollbar{
+  display: none;
+}
+
+.attachedFiles {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.fileItem button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+#fileInput {
+  position: relative;
+  height: 39%;
+  width: 98%;
+  border: 2px dashed gray;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#fileInput > img {
+  height: 20%;
+}
+#fileInput > h1 {
+  font-family: "Playwrite DK Uloopet";
+  font-size: 0.8em;
+  color: gray;
+  margin-left: 1%;
+}
+
+#fileInput > input {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
 
 
-.composeMain{
-    position: fixed;
-    top: 38vh;
-    left: 71vw;
-    width: 25vw;
-    height: 60vh;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.composeHead{
-    width: 100%;
-    height: 8%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding-left: 2%;
-    padding-right: 2%;
-    font-family: "Playwrite DK Uloopet";
-    font-weight: bolder;
-}
-.composeHead > button{
-    background-color: transparent;
-    border: none;
-    font-size: 0.8em;
-    cursor: pointer;
-}
-.composeTo{
-    width: 100%;
-    height: 8%;
-    font-family: "Playwrite DK Uloopet";
-    font-size: 0.8em;
-    padding-left: 2%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
+.uploadComposeMain{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.composeTo > input{
-    width: 90%;
-    height: 100%;
-    border: none;
-    outline: none;
-    padding-left: 2%;
-    font-family: "Playwrite DK Uloopet";
-    font-size: 0.8em;
+.uploadCompose{
+  width: 30%;
+  height: fit-content;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.composeSub{
-    width: 100%;
-    height: 8%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
+.uploadComposeHead{
+  width: 95%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Playwrite DK Uloopet";
 }
-.composeSub > input{
-    width: 90%;
-    height: 100%;
-    border: none;
-    outline: none;
-    padding-left: 2%;
-    font-family: "Playwrite DK Uloopet";
-    font-size: 0.8em;
+.uploadComposeLeft{
+  width: 95%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
-.composeBody{
-    width: 100%;
-    height: 70%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.uploadComposeInput{
+  width: 90%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed gray;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.composeBody > textarea{
-    width: 95%;
-    height: 95%;
-    border: none;
-    outline: none;
-    padding-left: 2%;
-    font-family: "Playwrite DK Uloopet";
-    font-size: 0.8em;
-    resize: none;
+.uploadComposeInput > input{
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
-.composeBtn{
-    width: 100%;
-    height: 8%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+.uploadComposeInput > img{
+  height: 40%;
 }
-.composeBtn > img{
-    height: 50%;
-    width: 4.5%;
-    cursor: pointer;
+.uploadComposeInput > h2{
+  font-family: "Playwrite DK Uloopet";
+  font-size: 1em;
+  color: gray;
+  margin-left: 1%;
 }

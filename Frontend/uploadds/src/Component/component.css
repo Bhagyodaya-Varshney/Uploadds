@@ -1,6 +1,5 @@
 .recentFileMain{
     width: 95%;
-    height: 50px;
     margin-top: 3px;
     margin-bottom: 3px;
     font-weight: 900;
@@ -9,6 +8,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 .recentFileMain > h2{
     font-size: 1.1rem;

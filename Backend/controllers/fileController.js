@@ -63,7 +63,6 @@ export const FileController = async (req, res) => {
 export const FileUploadController = async (req, res) => {
   const { token } = req.body;
 
-
   if (!req.file)  return res.status(400).send({ message: "No file uploaded" });
   
 
@@ -81,7 +80,6 @@ export const FileUploadController = async (req, res) => {
     }
 
     if(User.uploadCount >= DAILY_LIMIT) return res.status(500).json({message:"Daily Upload Limit Reached"});
-    console.log(User.uploadCount+1);
     User.uploadCount = User.uploadCount+1;
     await User.save();
 

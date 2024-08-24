@@ -4,10 +4,20 @@ import { Link,useNavigate} from "react-router-dom";
 import logout from "../assests/log-out.png";
 import profile_logo from "../assests/profile_logo.jpg";
 import { useAuth } from "../context/authContext";
+import { Profile } from "../Profile/profile";
+import { ChangePass } from "../ChangePass/changePass";
+import { PremiumMem } from "../PremiumMember/premiumMem";
+
 
 
 export const MainUpper = () => {
   const [searchText, setSearchText] = useState("");
+  const [showProfile, setShowProfile] = useState(false);
+  const [showChangePass, setShowChangePass] = useState(false);
+  const [showPremium, setShowPremium] = useState(false);
+
+  const handleShowChangePass = () => {setShowChangePass(!showChangePass);}
+  const handleShowPremium = () => {setShowPremium(!showPremium);}
 
   const {removeTokenInLS} = useAuth(); 
 
@@ -18,7 +28,11 @@ export const MainUpper = () => {
     const logoutFunc = () => {
         navigate("/");
         removeTokenInLS();
-    }
+  }
+
+  const handleShowProfile = () => {
+    setShowProfile(!showProfile);
+  };
 
   return (
     <div className="mainUpper">
@@ -45,8 +59,17 @@ export const MainUpper = () => {
       </div>
       <div className="mainIcon">
         <img src={logout} alt="" onClick={logoutFunc}/>
-        <img src={profile_logo} alt="" />
+        <img src={profile_logo} alt="" onClick={handleShowProfile}/>
       </div>
+      {
+        showProfile && <Profile handleShowProfile={handleShowProfile} handleShowChangePass={handleShowChangePass} handleShowPremium={handleShowPremium}/>
+      }
+      {
+        showChangePass && <ChangePass handleShowChangePass={handleShowChangePass}/>
+      }
+      {
+        showPremium && <PremiumMem handleShowPremium={handleShowPremium}/>
+      }
     </div>
   );
 };

@@ -1,0 +1,58 @@
+.changePassMain{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.350);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 102;
+}
+.changePass{
+    width: 20%;
+    height: 50%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.4);
+}
+.changePassHead{
+    width: 90%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Nunito";
+    font-weight: 800;
+}
+#changePassDivClose{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(99, 5, 5);
+    border: none;
+    font-weight: 800;
+    font-size: 1.5rem;
+    font-family: "Nunito";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.changePassInputDiv{
+    width: 90%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}

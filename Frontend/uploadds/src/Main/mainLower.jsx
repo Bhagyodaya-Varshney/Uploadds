@@ -13,14 +13,22 @@ import { UploaddCard } from "./uploaddCard";
 export const MainLower = () => {
   const [showCompose, setShowCompose] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
+  const [showInbox, setShowInbox] = useState(false);
+
 
   const showComposeHandler = () => {
     setShowCompose(!showCompose);
   };
 
   const showUploadHandler = () => {
-    setShowUpload(!showUpload);
+    setShowUpload(true);
+    setShowInbox(false);
   };
+
+  const showInboxHandler = () => {
+    setShowInbox(true);
+    setShowUpload(false);
+  }
 
   return (
     <div className="mainLower">
@@ -29,7 +37,7 @@ export const MainLower = () => {
           <div className="iconDiv">
             <img src={compose} alt="" onClick={showComposeHandler} />
           </div>
-          <img src={inbox} alt="" id="inboxIcon" />
+          <img src={inbox} alt="" id="inboxIcon"  onClick={showInboxHandler}/>
           <img src={sent} alt="" id="inboxIcon" />
           <img src={upload} alt="" id="inboxIcon" onClick={showUploadHandler} />
         </div>

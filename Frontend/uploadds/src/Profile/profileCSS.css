@@ -1,175 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+PE:wght@100..400&family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-
-.profileDiv{
-    height: 100%;
-    width: 100%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-top: 3%;
-    padding-bottom: 2%;
+.profileMain{
+    height: fit-content;
+    width: 20vw;
+    position: fixed;
+    top: 8%;
+    right: 1%;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    background-color: rgb(240, 244, 253);
-}
-.profileMainDiv{
-    width: 100%;
-    height: 97%;
-    margin-top: 3%;
-    display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-}
-.memberProfileDiv{
-    width: 49%;
-    height: 98%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 .profileImg{
-    width: 50%;
     height: 35%;
+    width: 40%;
     border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid rgb(226, 236, 252);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(226, 236, 252);
-    position: relative;
-    left: 25%;
-    box-shadow: 2px 2px 10px 8px rgba(0, 0, 0, 0.2);
-}
-.profileImg > img{
-    width: 95%;
-    height: 90%;
-}
-.memberInfoDiv{
-    width: 49%;
-    height: 98%;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-}
-#dashEndBarHead{
     margin-top: 2%;
     margin-bottom: 2%;
 }
-.passDiv{
-    width: 100%;
-    height: 8%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 5%;
-    margin-top: 1%;
-}
-.passDiv > button{
-    padding: 2%;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(208, 223, 247);
-    cursor: pointer;
-    font-family: "IBM Plex Sans";
-    font-weight: 600;
-    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.2) inset;
-}
-.passDiv > button:hover{
-    background-color: rgb(196, 211, 235);
-}
-.changePassDiv{
-    margin-top: 5%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 1%;
-    padding-bottom: 1%;
-}
-#limitWarning{
-    color: red;
-    font-weight: 900;
-    font-size: 0.8em;
-    font-family: 'IBM Plex Sans';
-    margin-top: 5%;
-    border: 2px solid red;
-    border-radius: 10px;
-    padding: 1%;
-    background-color: rgba(255, 0, 0, 0.15);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 5px 10px 5px rgba(255,0,0,0.1) inset;
-}
-#limitWarning > h3{
-    margin-right: 1%;
-    width: 10%;
+.profileImg > img{
     height: 100%;
-}
-.paymentCard{
     width: 100%;
-    height: 80%;
-    padding: 1%;
+    border-radius: 50%;
+}
+.profileInfoDiv{
+    width: 95%;
+    height: 15%;
+    font-size: 0.8rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    justify-content: space-around;
-    border-radius: 1.7rem;
-    border: 2px solid black;
-    background-color: rgba(20, 20, 20);
+    font-family: "Josefin Sans";
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: rgb(191, 189, 189);
 }
-.paymentCard > h2{
-    font-size: 1.6rem;    font-family: "Playwrite PE";  color: goldenrod;
-}
-.mainPaymentCard{
-    width: 100%;
-    height: 70%;
+.extraInfoDiv{
+    width: 95%;
+    height: 30px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
-    align-items: start;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
-#a{
-    width: 100%;
-    height: 60%;
-    font-family: "Nunito";
-    font-weight: 800;
-    padding-top: 5%;
+#cPBtn{
+    width: 49%;
+    height: 95%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    font-family: "Josefin Sans";
+}
+#pMBtn{
+    width: 49%;
+    height: 95%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    font-family: "Josefin Sans";
+}
+#pMBtn:hover, #cPBtn:hover{
+    background-color: rgba(0, 0, 0.6);
+}
+.dailyUpload{
+    width: 95%;
+    height: 5%;
+    font-weight: 900;
+    font-family: "Josefin Sans";
+    font-size: 1rem;
+    margin-top: 10%;
+    margin-bottom: 2%;
     color: white;
 }
-.monthPrice{
-    width: 100%;
-    height: 20%;
+.uploadWarning{
+    width: 95%;
+    height: 55px;
+    background-color: rgba(255, 0, 0, 0.5);
+    font-size: 0.74rem;
+    padding: 2%;
+    border-radius: 10px;
+    color: rgb(75, 4, 4);
+    border: 2px solid red;
+    font-weight: 700;
+    font-family: "Josefin Sans";
+    margin-top: 2%;
+    margin-bottom: 8%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
 }
-.monthPrice > h3{
-    font-size: 1rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
-    border-radius: 0.4rem;
-    color: goldenrod;
-    border: 3px solid goldenrod;
-    font-family: "Playwrite PE";
-}
-.monthPrice > h2{
-    font-size: 3rem;
-    font-family: "Quicksand";
-    color: goldenrod;
+.uploadWarning > h3{margin: 1%;}
+#profileDivClose{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(184, 10, 10);
+    border: none;
+    font-weight: 900;
+    font-size: 1.5rem;
+    font-family: "Nunito";
 }

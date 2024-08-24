@@ -1,6 +1,7 @@
 import "./main.css";
 import { MainUpper } from "./mainUpper";
 import { MainLower } from "./mainLower";
+import { Profile } from "../Profile/profile";
 
 
 
